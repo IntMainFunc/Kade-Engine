@@ -23,14 +23,15 @@ class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;
 
+	//Need to think of some harder songs -znx
 	var weekData:Array<Dynamic> = [
 		['Tutorial'],
-		['Bopeebo', 'Fresh', 'Dadbattle'],
-		['Spookeez', 'South', "Monster"],
-		['Pico', 'Philly', "Blammed"],
-		['Satin-Panties', "High", "Milf"],
-		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
-		['Senpai', 'Roses', 'Thorns']
+		["???", "???", "???"],
+		["???", "???", "???"],
+		["???", "???", "The Title Is Too Long To Write Here"],
+		["Brain Power", "Reach For The Moon", "Everything Will Freeze"],
+		["???", "???", "???"],
+		["Fool Moon", "Flowering Night Fever", "Centipede"]
 	];
 	var curDifficulty:Int = 1;
 
@@ -47,13 +48,13 @@ class StoryMenuState extends MusicBeatState
 	];
 
 	var weekNames:Array<String> = [
-		"How to Funk",
-		"Daddy Dearest",
-		"Spooky Month",
-		"PICO",
-		"MOMMY MUST MURDER",
-		"RED SNOW",
-		"Hating Simulator ft. Moawling"
+		"Tutorial?",
+		"Medium",
+		"Hard",
+		"Hardcore",
+		"Nightmare",
+		"Death",
+		"Good luck."
 	];
 
 	var txtWeekTitle:FlxText;
@@ -382,9 +383,10 @@ class StoryMenuState extends MusicBeatState
 		txtTracklist.text = "Tracks\n";
 		var stringThing:Array<String> = weekData[curWeek];
 
-		for (i in stringThing)
+		//This motherfucker didn't put the last song in the "Tracks" section for some BS reason -znx
+		for (i in 0...(stringThing.length + 1))
 		{
-			txtTracklist.text += "\n" + i;
+			txtTracklist.text += "\n" + stringThing[i];
 		}
 
 		txtTracklist.text = txtTracklist.text.toUpperCase();
