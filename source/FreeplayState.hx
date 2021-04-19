@@ -140,21 +140,25 @@ class FreeplayState extends MusicBeatState
 
 		super.create();
 	}
+	
+	// Why the frick is this function even exist? / replaced the only one use of it with its contents. -znx
+	// bruh
+	// public function addSong(songName:String, weekNum:Int, songCharacter:String)
+	// {
+	// 	songs.push(new SongMetadata(songName, weekNum, songCharacter));
+	// }
 
-	public function addSong(songName:String, weekNum:Int, songCharacter:String)
-	{
-		songs.push(new SongMetadata(songName, weekNum, songCharacter));
-	}
-
-	public function addWeek(songs:Array<String>, weekNum:Int, ?songCharacters:Array<String>)
+							// AND WHY DID SOMEONE NAME A FUNC VAR THE SAME NAME AS THE CLASS VAR WTF -znx 
+	public function addWeek(songNames:Array<String>, weekNum:Int, ?songCharacters:Array<String>)
 	{
 		if (songCharacters == null)
 			songCharacters = ['bf'];
 
 		var num:Int = 0;
-		for (song in songs)
+		for (name in songNames)
 		{
-			addSong(song, weekNum, songCharacters[num]);
+			// Was previously addSong(). bruh -znx
+			songs.push(new SongMetadata(name, weekNum, songCharacters[num]));
 
 			if (songCharacters.length != 1)
 				num++;

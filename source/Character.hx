@@ -495,6 +495,13 @@ class Character extends FlxSprite
 				addOffset("singDOWN-alt", -30, -27);
 
 				playAnim('idle');
+			case "orb":
+				frames = Paths.getSparrowAtlas("orb","orb"); 	// Rng used for the arrays lol. -znx
+				animation.addByIndices('idle', 'idle0',		 	[4,3,4,1,0,2,2,4,0,1],'', 24, true);
+				animation.addByIndices('singUP', 'up0',		 	[1,0,2,2,1,4,4,3,0,4],'', 24, true);
+				animation.addByIndices('singDOWN', 'down0',	 	[1,1,3,4,4,1,0,3,2,2],'', 24, true);
+				animation.addByIndices('singLEFT', 'left0',	 	[0,3,4,3,1,4,0,1,1,1],'', 24, true);
+				animation.addByIndices('singRIGHT', 'right0',	[4,3,3,2,1,1,0,4,3,3],'', 24, true);
 		}
 
 		dance();

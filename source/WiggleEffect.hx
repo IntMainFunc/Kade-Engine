@@ -91,34 +91,34 @@ class WiggleShader extends FlxShader
 
 		vec2 sineWave(vec2 pt)
 		{
-			float x = 0.0;
-			float y = 0.0;
+			float deltaX = 0.0;
+			float deltaY = 0.0;
 			
 			if (effectType == EFFECT_TYPE_DREAMY) 
 			{
-				float offsetX = sin(pt.y * uFrequency + uTime * uSpeed) * uWaveAmplitude;
-                pt.x += offsetX; // * (pt.y - 1.0); // <- Uncomment to stop bottom part of the screen from moving
+				float deltaX = sin(pt.y * uFrequency + uTime * uSpeed) * uWaveAmplitude;
+                deltaX; // * (pt.y - 1.0); // <- Uncomment and remove the first semicolon to stop bottom part of the screen from moving
 			}
 			else if (effectType == EFFECT_TYPE_WAVY) 
 			{
 				float offsetY = sin(pt.x * uFrequency + uTime * uSpeed) * uWaveAmplitude;
-				pt.y += offsetY; // * (pt.y - 1.0); // <- Uncomment to stop bottom part of the screen from moving
+				deltaY; // * (pt.y - 1.0); // <- Uncomment and remove the first semicolon to stop bottom part of the screen from moving
 			}
 			else if (effectType == EFFECT_TYPE_HEAT_WAVE_HORIZONTAL)
 			{
-				x = sin(pt.x * uFrequency + uTime * uSpeed) * uWaveAmplitude;
+				deltaX = sin(pt.x * uFrequency + uTime * uSpeed) * uWaveAmplitude;
 			}
 			else if (effectType == EFFECT_TYPE_HEAT_WAVE_VERTICAL)
 			{
-				y = sin(pt.y * uFrequency + uTime * uSpeed) * uWaveAmplitude;
+				deltaY = sin(pt.y * uFrequency + uTime * uSpeed) * uWaveAmplitude;
 			}
 			else if (effectType == EFFECT_TYPE_FLAG)
 			{
-				y = sin(pt.y * uFrequency + 10.0 * pt.x + uTime * uSpeed) * uWaveAmplitude;
-				x = sin(pt.x * uFrequency + 5.0 * pt.y + uTime * uSpeed) * uWaveAmplitude;
+				deltaY = sin(pt.y * uFrequency + 10.0 * pt.x + uTime * uSpeed) * uWaveAmplitude;
+				deltaX = sin(pt.x * uFrequency + 5.0 * pt.y + uTime * uSpeed) * uWaveAmplitude;
 			}
 			
-			return vec2(pt.x + x, pt.y + y);
+			return vec2(pt.x + deltaX, pt.y + deltaY);
 		}
 
 		void main()
