@@ -401,7 +401,6 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
-
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
@@ -429,11 +428,11 @@ class PlayState extends MusicBeatState
 		switch (storyDifficulty)
 		{
 			case 0:
-				storyDifficultyText = "Easy";
-			case 1:
 				storyDifficultyText = "Normal";
+			case 1:
+				storyDifficultyText = "Blind";
 			case 2:
-				storyDifficultyText = "Hard";
+				storyDifficultyText = "Hiden";
 		}
 
 		iconRPC = SONG.player2;
@@ -534,47 +533,47 @@ class PlayState extends MusicBeatState
 
 				isHalloween = true;
 			}
-			case 'pico' | 'blammed' | 'philly': 
-					{
-					curStage = 'philly';
+			case 'pico' | 'blammed' | 'philly': // indentation was weird here -znx
+			{
+				curStage = 'philly';
 
-					var bg:FlxSprite = new FlxSprite(-100).loadGraphic(Paths.image('philly/sky'));
-					bg.scrollFactor.set(0.1, 0.1);
-					add(bg);
+				var bg:FlxSprite = new FlxSprite(-100).loadGraphic(Paths.image('philly/sky'));
+				bg.scrollFactor.set(0.1, 0.1);
+				add(bg);
 
-						var city:FlxSprite = new FlxSprite(-10).loadGraphic(Paths.image('philly/city'));
-					city.scrollFactor.set(0.3, 0.3);
-					city.setGraphicSize(Std.int(city.width * 0.85));
-					city.updateHitbox();
-					add(city);
+				var city:FlxSprite = new FlxSprite(-10).loadGraphic(Paths.image('philly/city'));
+				city.scrollFactor.set(0.3, 0.3);
+				city.setGraphicSize(Std.int(city.width * 0.85));
+				city.updateHitbox();
+				add(city);
 
-					phillyCityLights = new FlxTypedGroup<FlxSprite>();
-					add(phillyCityLights);
+				phillyCityLights = new FlxTypedGroup<FlxSprite>();
+				add(phillyCityLights);
 
-					for (i in 0...5)
-					{
-							var light:FlxSprite = new FlxSprite(city.x).loadGraphic(Paths.image('philly/win' + i));
-							light.scrollFactor.set(0.3, 0.3);
-							light.visible = false;
-							light.setGraphicSize(Std.int(light.width * 0.85));
-							light.updateHitbox();
-							light.antialiasing = true;
-							phillyCityLights.add(light);
-					}
+				for (i in 0...5)
+				{
+					var light:FlxSprite = new FlxSprite(city.x).loadGraphic(Paths.image('philly/win' + i));
+					light.scrollFactor.set(0.3, 0.3);
+					light.visible = false;
+					light.setGraphicSize(Std.int(light.width * 0.85));
+					light.updateHitbox();
+					light.antialiasing = true;
+					phillyCityLights.add(light);
+				}
 
-					var streetBehind:FlxSprite = new FlxSprite(-40, 50).loadGraphic(Paths.image('philly/behindTrain'));
-					add(streetBehind);
+				var streetBehind:FlxSprite = new FlxSprite(-40, 50).loadGraphic(Paths.image('philly/behindTrain'));
+				add(streetBehind);
 
-						phillyTrain = new FlxSprite(2000, 360).loadGraphic(Paths.image('philly/train'));
-					add(phillyTrain);
+				phillyTrain = new FlxSprite(2000, 360).loadGraphic(Paths.image('philly/train'));
+				add(phillyTrain);
 
-					trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
-					FlxG.sound.list.add(trainSound);
+				trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
+				FlxG.sound.list.add(trainSound);
 
-					// var cityLights:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.win0.png);
+				// var cityLights:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.win0.png);
 
-					var street:FlxSprite = new FlxSprite(-40, streetBehind.y).loadGraphic(Paths.image('philly/street'));
-						add(street);
+				var street:FlxSprite = new FlxSprite(-40, streetBehind.y).loadGraphic(Paths.image('philly/street'));
+				add(street);
 			}
 			case 'milf' | 'satin-panties' | 'high':
 			{
@@ -822,6 +821,10 @@ class PlayState extends MusicBeatState
 								add(waveSpriteFG);
 						*/
 			}
+			// case "" | "" | "": the new songs!
+			// {
+			// 
+			// }
 			default:
 			{
 					defaultCamZoom = 0.9;
@@ -869,11 +872,12 @@ class PlayState extends MusicBeatState
 
 		gf = new Character(400, 130, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
-
+		
 		dad = new Character(100, 100, SONG.player2);
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
 
+		// needed to debug an unknown bug, there is no default for this switch smh -znx
 		switch (SONG.player2)
 		{
 			case 'gf':
@@ -910,6 +914,11 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+			case "orb":
+				dad.y += 200;
+			default:
+				camPos.x += 400; // same as dad -znx
+
 		}
 
 

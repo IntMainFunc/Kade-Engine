@@ -26,11 +26,11 @@ class StoryMenuState extends MusicBeatState
 	//Need to think of some harder songs -znx
 	var weekData:Array<Dynamic> = [
 		['Tutorial'],
-		["???", "???", "???"],
-		["???", "???", "???"],
-		["???", "???", "The Title Is Too Long To Write Here"],
+		["Be Prepared", "Hollow Purple", "Furioso Felodia"],
+		["Your Battle Is My Battle", "Happppy Song", "JUJUTSU KAISEN"],
+		["True Administrator", "The Title Is Too Long To Write Here", "Tempestissimo"],
 		["Brain Power", "Reach For The Moon", "Everything Will Freeze"],
-		["???", "???", "???"],
+		["MEI", "REMEMBER", "The Big Black"],
 		["Fool Moon", "Flowering Night Fever", "Centipede"]
 	];
 	var curDifficulty:Int = 1;
@@ -39,12 +39,12 @@ class StoryMenuState extends MusicBeatState
 
 	var weekCharacters:Array<Dynamic> = [
 		['', 'bf', 'gf'],
-		['dad', 'bf', 'gf'],
-		['spooky', 'bf', 'gf'],
-		['pico', 'bf', 'gf'],
-		['mom', 'bf', 'gf'],
-		['parents-christmas', 'bf', 'gf'],
-		['senpai', 'bf', 'gf']
+		['orb', 'bf', 'gf'],
+		['orb', 'bf', 'gf'],
+		['orb', 'bf', 'gf'],
+		['orb', 'bf', 'gf'],
+		['orb', 'bf', 'gf'],
+		['orb', 'bf', 'gf']
 	];
 
 	var weekNames:Array<String> = [
@@ -184,7 +184,7 @@ class StoryMenuState extends MusicBeatState
 		add(yellowBG);
 		add(grpWeekCharacters);
 
-		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 32);
+		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 24); // Changed from 32 to 24 -znx
 		txtTracklist.alignment = CENTER;
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xFFe55777;

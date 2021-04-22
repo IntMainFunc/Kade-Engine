@@ -27,7 +27,6 @@ class Character extends FlxSprite
 
 		var tex:FlxAtlasFrames;
 		antialiasing = true;
-
 		switch (curCharacter)
 		{
 			case 'gf':
@@ -495,13 +494,38 @@ class Character extends FlxSprite
 				addOffset("singDOWN-alt", -30, -27);
 
 				playAnim('idle');
-			case "orb":
-				frames = Paths.getSparrowAtlas("orb","orb"); 	// Rng used for the arrays lol. -znx
-				animation.addByIndices('idle', 'idle0',		 	[4,3,4,1,0,2,2,4,0,1],'', 24, true);
-				animation.addByIndices('singUP', 'up0',		 	[1,0,2,2,1,4,4,3,0,4],'', 24, true);
-				animation.addByIndices('singDOWN', 'down0',	 	[1,1,3,4,4,1,0,3,2,2],'', 24, true);
-				animation.addByIndices('singLEFT', 'left0',	 	[0,3,4,3,1,4,0,1,1,1],'', 24, true);
-				animation.addByIndices('singRIGHT', 'right0',	[4,3,3,2,1,1,0,4,3,3],'', 24, true);
+
+			case 'orb':
+				frames = Paths.getSparrowAtlas("orb",'shared'); 	// Rng used for the arrays lol. -znx
+				// animation.addByIndices('idle', 'idle',		 	[4,3,4,1,0,2,2,4,0,1],'', 48, true);
+				// animation.addByIndices('singUP', 'up',		 	[1,0,2,2,1,4,4,3,0,4],'', 48, true);
+				// animation.addByIndices('singDOWN', 'down',	 	[1,1,3,4,4,1,0,3,2,2],'', 48, true);
+				// animation.addByIndices('singLEFT', 'left',	 	[0,3,4,3,1,4,0,1,1,1],'', 48, true);
+				// animation.addByIndices('singRIGHT', 'right',		[4,3,3,2,1,1,0,4,3,3],'', 48, true);
+				animation.addByPrefix('idle', 'idle', 		48, true);
+				animation.addByPrefix('singUP', 'up', 		48, true);
+				animation.addByPrefix('singDOWN', 'down', 	48, true);
+				animation.addByPrefix('singLEFT', 'left', 	48, true);
+				animation.addByPrefix('singRIGHT', 'right', 48, true);
+
+				playAnim('idle');
+
+			default:
+				tex = Paths.getSparrowAtlas('DADDY_DEAREST','shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'Dad idle dance', 24);
+				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
+
+				addOffset('idle');
+				addOffset("singUP", -6, 50);
+				addOffset("singRIGHT", 0, 27);
+				addOffset("singLEFT", -10, 10);
+				addOffset("singDOWN", 0, -30);
+
+				playAnim('idle');
 		}
 
 		dance();
