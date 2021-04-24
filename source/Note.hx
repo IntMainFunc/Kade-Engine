@@ -36,6 +36,8 @@ class Note extends FlxSprite
 
 	public var rating:String = "shit";
 
+	static public var curShader:NoteShader;
+
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false)
 	{
 		super();
@@ -107,6 +109,8 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();
 				antialiasing = true;
+
+				shader = new NoteShader();
 		}
 
 		switch (noteData)

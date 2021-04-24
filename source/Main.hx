@@ -27,6 +27,11 @@ class Main extends Sprite
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
+	//public function getWindowHeight():Int
+	//{
+	//	return game.gameHeight; // for shader 
+	//}
+
 	public static function main():Void
 	{
 

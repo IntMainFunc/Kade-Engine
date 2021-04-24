@@ -239,7 +239,7 @@ class FreeplayState extends MusicBeatState
 			case 1:
 				diffText.text = "BLIND";
 			case 2:
-				diffText.text = "HIDEN";
+				diffText.text = "HIDDEN";
 		}
 	}
 

@@ -19,6 +19,7 @@ import openfl.Lib;
 import Section.SwagSection;
 import Song.SwagSong;
 import WiggleEffect.WiggleEffectType;
+import NoteShader;
 import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxG;
@@ -207,6 +208,10 @@ class PlayState extends MusicBeatState
 	// LUA SHIT
 		
 	public static var lua:State = null;
+
+	// SHADER SHIT -znx
+
+	// public static var noteShader:NoteEffect = new NoteEffect();
 
 	function callLua(func_name : String, args : Array<Dynamic>, ?type : String) : Dynamic
 	{
@@ -432,7 +437,7 @@ class PlayState extends MusicBeatState
 			case 1:
 				storyDifficultyText = "Blind";
 			case 2:
-				storyDifficultyText = "Hiden";
+				storyDifficultyText = "Hidden";
 		}
 
 		iconRPC = SONG.player2;
@@ -484,6 +489,18 @@ class PlayState extends MusicBeatState
 
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
+
+		//// 1 for hidden -1 for blind
+		//Note.curShader = noteShader.shader;
+		//switch(storyDifficulty)
+		//{
+		//	case 0:
+		//		Note.curShader = null;
+		//	case 1:
+		//		//noteShader.shaderType = -1;
+		//	case 2:
+		//		//noteShader.shaderType= 1;
+		//}
 
 		trace('INFORMATION ABOUT WHAT U PLAYIN WIT:\nFRAMES: ' + Conductor.safeFrames + '\nZONE: ' + Conductor.safeZoneOffset + '\nTS: ' + Conductor.timeScale);
 		
@@ -2089,6 +2106,9 @@ class PlayState extends MusicBeatState
 		perfectMode = false;
 		#end
 
+		// shader window shit
+		// noteShader.windowSizeY = Main.getWindowHeight();
+
 		if (executeModchart && lua != null && songStarted)
 		{
 			setVar('songPos',Conductor.songPosition);
@@ -2623,7 +2643,7 @@ class PlayState extends MusicBeatState
 						}
 						else
 						{
-							health -= 0.075;
+							health -= 0.125;
 							vocals.volume = 0;
 							if (theFunne)
 								noteMiss(daNote.noteData, daNote);
@@ -2794,7 +2814,7 @@ class PlayState extends MusicBeatState
 					score = -300;
 					combo = 0;
 					misses++;
-					health -= 0.2;
+					health -= 0.4;
 					ss = false;
 					shits++;
 					if (FlxG.save.data.accuracyMod == 0)
@@ -2802,7 +2822,7 @@ class PlayState extends MusicBeatState
 				case 'bad':
 					daRating = 'bad';
 					score = 0;
-					health -= 0.06;
+					health -= 0.1;
 					ss = false;
 					bads++;
 					if (FlxG.save.data.accuracyMod == 0)
@@ -2813,7 +2833,7 @@ class PlayState extends MusicBeatState
 					ss = false;
 					goods++;
 					if (health < 2)
-						health += 0.04;
+						health += 0.02;
 					if (FlxG.save.data.accuracyMod == 0)
 						totalNotesHit += 0.75;
 				case 'sick':
@@ -3422,7 +3442,7 @@ class PlayState extends MusicBeatState
 	{
 		if (!boyfriend.stunned)
 		{
-			health -= 0.04;
+			health -= 0.08;
 			if (combo > 5 && gf.animOffsets.exists('sad'))
 			{
 				gf.playAnim('sad');
@@ -3555,7 +3575,7 @@ class PlayState extends MusicBeatState
 						playerStrums.members[1].animation.play('static');
 						playerStrums.members[2].animation.play('static');
 						playerStrums.members[3].animation.play('static');
-						health -= 0.2;
+						health -= 0.4;
 						trace('mash ' + mashing);
 					}
 
